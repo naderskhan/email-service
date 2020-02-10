@@ -1,0 +1,15 @@
+{
+  "all": true,
+  "include": [
+    "src/*"
+  ],
+  "requires": [
+    "@babel/register"
+  ],
+  "exclude": [
+    "src/services/mailgun.js",
+    "src/services/sendgrid.js",
+    "src/index.js",
+    "src/router.js"
+  ]
+}
