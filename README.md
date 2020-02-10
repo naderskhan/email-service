@@ -1,15 +1,15 @@
 # Email Service
 An `Email Service` written in Node.js (Express.js) that abstracts multiple email service providers to avoid downtime and failures while sending emails.
 
-Supports 2 email service providers by default:
+Supports 2 email providers by default:
 1. Mailgun (https://www.mailgun.com/)
 2. SendGrid (https://sendgrid.com/)
 
 
-## # Add new service providers
-1. Install package - `yarn add <package-name>`
+## # Add new email providers
+1. Install package - `yarn add <provider-package>`
 2. Add credentials in config ([see - config.js](https://github.com/naderskhan/email-service/blob/master/src/config.js))
-3. Create new file under `/src/services/` - make sure file name matches config, and it exports a `send()` function ([see - config.js](https://github.com/naderskhan/email-service/blob/master/src/services))
+3. Create new file under `/src/services/`. Make sure file name matches config, and it exports a `send()` function ([see - service examples](https://github.com/naderskhan/email-service/blob/master/src/services))
 
 ## # Run locally
 1. Export credentials in terminal:
@@ -52,11 +52,11 @@ $ yarn test
 
 
 ## # TODO
-- Add a data storage to maintain a record of email statuses (a queue based approached can be used as well)
-- Ranking of service providers to sort by ones with higher success rates
-- A config for `maxAttempts` to trigger/retry with different service providers
+- Add a data storage to maintain a record of email statuses (a queue based approach can be an option)
+- Ranking of email providers to sort and attempt by ones with higher success rates
+- A config for `maxAttempts` to trigger/retry with different email providers
 - Specific validation errors instead of `Invalid email data` - such as: Invalid email structure, Missing subject,..
-- Integration tests
+- Unit tests coverage and integration tests
 - Separate configs for test, dev and prod environments
 - A proper logger (like `Winston`) for added advantage - such as formatting, levels, stack trace,..
 - Dockerizing, deployment pipeline (CICD) and hosting
