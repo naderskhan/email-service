@@ -59,6 +59,6 @@ $ yarn test
 - Unit tests coverage and integration tests
 - Separate configs for test, dev and prod environments
 - A proper logger (like `Winston`) for added advantage - such as formatting, levels, stack trace,..
-- Dockerizing, deployment pipeline (CICD) and hosting
+- Deployment pipeline (CICD) and hosting
 
 
