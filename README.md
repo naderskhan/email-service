@@ -14,7 +14,7 @@ Supports 4 email providers by default:
     - File name must match provider's name in config
     - File must export a `send()` function
 
-## # Run service locally
+## # Run locally
 1. Export credentials in terminal:
 ```
 // mailgun
@@ -60,6 +60,14 @@ curl --location --request POST 'http://localhost:3030/email' \
 
 4. Email sent! 🚀
 
+
+## # Run with Docker
+```
+$ yarn build
+$ docker build --tag=email-service .
+$ docker run -p 80:3000 email-service
+# Hit http://localhost/
+```
 
 ## # Lint & Test
 ```
