@@ -1,10 +1,5 @@
 module.exports = {
   providers: {
-    mailgun: {
-      apiKey: process.env.MAILGUN_API_KEY,
-      domain: process.env.MAILGUN_DOMAIN,
-      from: process.env.MAILGUN_FROM,
-    },
     mailjet: {
       apiKey: [
         process.env.MAILJET_API_KEY_PUBLIC,
@@ -12,6 +7,11 @@ module.exports = {
       ],
       domain: '',
       from: process.env.MAILJET_FROM,
+    },
+    mailgun: {
+      apiKey: process.env.MAILGUN_API_KEY,
+      domain: process.env.MAILGUN_DOMAIN,
+      from: process.env.MAILGUN_FROM,
     },
     sendinblue: {
       apiKey: process.env.SENDINBLUE_API_KEY,

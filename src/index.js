@@ -4,7 +4,7 @@ import { log, error } from 'console';
 import { router } from './router';
 
 const app = Express();
-const PORT = process.env.PORT || 3030;
+const PORT = process.env.PORT || 3000;
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
