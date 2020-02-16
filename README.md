@@ -1,22 +1,39 @@
 # Email Service
 An `Email Service` written in Node.js (Express.js) that abstracts multiple email service providers to avoid downtime and failures while sending emails.
 
-Supports 2 email providers by default:
-1. Mailgun (https://www.mailgun.com/)
-2. SendGrid (https://sendgrid.com/)
-
+Supports 4 email providers by default:
+1. [Mailgun](https://www.mailgun.com/)
+2. [Mailjet](https://www.mailjet.com/)
+3. [SendGrid](https://www.sendgrid.com/)
+4. [SendInBlue](https://www.sendinblue.com/)
 
 ## # Add new email providers
 1. Install package - `yarn add <provider-package>`
 2. Add credentials in config ([see - config.js](https://github.com/naderskhan/email-service/blob/master/src/config.js))
-3. Create new file under `/src/services/`. Make sure file name matches config, and it exports a `send()` function ([see - service examples](https://github.com/naderskhan/email-service/blob/master/src/services))
+3. Create a new file under `/src/services/` ([see - examples](https://github.com/naderskhan/email-service/blob/master/src/services)):
+    - File name must match provider's name in config
+    - File must export a `send()` function
 
-## # Run locally
+## # Run service locally
 1. Export credentials in terminal:
 ```
-export MAILGUN_API_KEY=<mailgun-api-key>
-export MAILGUN_DOMAIN=<mailgun-domain>
-export SENDGRID_API_KEY=<sendgrid-api-key>
+// mailgun
+export MAILGUN_FROM=<sender-email>
+export MAILGUN_API_KEY=<api-key>
+export MAILGUN_DOMAIN=<domain>
+
+// mailjet
+export MAILJET_FROM=<sender-email>
+export MAILJET_API_KEY_PUBLIC=<public-api-key>
+export MAILJET_API_KEY_PRIVATE=<private-api-key>
+
+// sendgrid
+export SENDGRID_FROM=<sender-email>
+export SENDGRID_API_KEY=<api-key>
+
+// sendinblue
+export SENDINBLUE_FROM=<sender-email>
+export SENDINBLUE_API_KEY=<api-key>
 ```
 
 2. Run app:
@@ -57,8 +74,5 @@ $ yarn test
 - A config for `maxAttempts` to trigger/retry with different email providers
 - Specific validation errors instead of `Invalid email data` - such as: Invalid email structure, Missing subject,..
 - Unit tests coverage and integration tests
-- Separate configs for test, dev and prod environments
 - A proper logger (like `Winston`) for added advantage - such as formatting, levels, stack trace,..
 - Deployment pipeline (CICD) and hosting
-
-
