@@ -1,4 +1,4 @@
-import { config } from '../config';
+import { providers } from 'config';
 import { constants } from '../constants';
 import { validateData } from '../utils';
 
@@ -13,7 +13,7 @@ export const sendEmail = async (req, res) => {
   }
 
   let isSent = false;
-  for (const provider of Object.keys(config.providers)) {
+  for (const provider of Object.keys(providers)) {
     const { send } = require(`./${provider}`);
     try {
       isSent = await send(data);
@@ -23,7 +23,7 @@ export const sendEmail = async (req, res) => {
       error(`Failed to send with ${provider} - ${err}`);
     }
   }
-  return isSent
+  return isSent && typeof isSent !== 'undefined'
     ? res.status(200).send({ message: EMAIL_SUCCESSFUL })
     : res.status(500).send({ message: EMAIL_FAILED });
 };

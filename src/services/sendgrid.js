@@ -1,8 +1,8 @@
 import sendgrid from '@sendgrid/mail';
-import { config } from '../config';
+import { providers } from 'config';
 
 export const send = async (data) => {
-  const { apiKey, from } = config.providers.sendgrid;
+  const { apiKey, from } = providers.sendgrid;
   const {
     to,
     cc,

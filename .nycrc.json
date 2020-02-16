@@ -1,7 +1,7 @@
 {
   "all": true,
   "include": [
-    "src/*"
+    "src"
   ],
   "requires": [
     "@babel/register"
@@ -9,6 +9,9 @@
   "exclude": [
     "src/services/mailgun.js",
     "src/services/sendgrid.js",
+    "src/services/mailjet.js",
+    "src/services/sendinblue.js",
+    "src/config",
     "src/index.js",
     "src/router.js"
   ]

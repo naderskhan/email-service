@@ -1,8 +1,8 @@
 import mailgun from 'mailgun-js';
-import { config } from '../config';
+import { providers } from 'config';
 
 export const send = async (data) => {
-  const { apiKey, domain, from } = config.providers.mailgun;
+  const { apiKey, domain, from } = providers.mailgun;
   const mg = mailgun({ apiKey, domain });
   const result = await mg.messages().send({
     from,

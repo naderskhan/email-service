@@ -40,3 +40,5 @@ export const validateData = (data) => {
     ...(filteredBcc.length && { bcc: filteredBcc.toString() }),
   };
 };
+
+export const emailsToObject = (emails, key = 'email') => emails.split(',').map((e) => ({ [key]: e }));
