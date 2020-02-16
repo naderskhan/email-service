@@ -10,7 +10,7 @@ Supports 4 email providers by default:
 ## # Add new email providers
 1. Install package - `yarn add <provider-package>`
 2. Add credentials in config ([see - config.js](https://github.com/naderskhan/email-service/blob/master/src/config.js))
-3. Create a new file under `/src/services/` ([see - examples](https://github.com/naderskhan/email-service/blob/master/src/services)):
+3. Create a new implementation file under `/src/services/` ([see - examples](https://github.com/naderskhan/email-service/blob/master/src/services)):
     - File name must match provider's name in config
     - File must export a `send()` function
 
@@ -42,14 +42,14 @@ $ git clone https://github.com/naderskhan/email-service.git
 $ cd email-service
 $ yarn install
 $ yarn start // or `yarn start:dev`(nodemon)
-# Hit http://localhost:3030/
+# Hit http://localhost:3000/
 ```
 
 3. Send request:
 
 *Replace `to`, `cc` and `bcc` with comma-separated emails*
 ```
-curl --location --request POST 'http://localhost:3030/email' \
+curl --location --request POST 'http://localhost:3000/email' \
 --header 'Content-Type: application/x-www-form-urlencoded' \
 --data-urlencode 'to=test@test.com' \
 --data-urlencode 'subject=Hello' \
