@@ -12,13 +12,10 @@
     "test": "export NODE_ENV=testing && ./node_modules/.bin/nyc ./node_modules/.bin/mocha --require @babel/register"
   },
   "dependencies": {
-    "@sendgrid/mail": "^6.5.1",
     "body-parser": "^1.19.0",
     "config": "^3.2.5",
     "express": "^4.17.1",
-    "mailgun-js": "^0.22.0",
-    "node-mailjet": "^3.3.1",
-    "sib-api-v3-sdk": "^7.1.4"
+    "superagent": "^5.2.2"
   },
   "devDependencies": {
     "@babel/cli": "^7.7.7",

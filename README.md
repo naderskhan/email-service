@@ -1,39 +1,30 @@
 # Email Service
 An `Email Service` written in Node.js (Express.js) that abstracts multiple email service providers to avoid downtime and failures while sending emails.
 
-Supports 4 email providers by default:
+Supports 2 email providers by default:
 1. [Mailgun](https://www.mailgun.com/)
-2. [Mailjet](https://www.mailjet.com/)
-3. [SendGrid](https://www.sendgrid.com/)
-4. [SendInBlue](https://www.sendinblue.com/)
+2. [SendGrid](https://www.sendgrid.com/)
 
 ## # Add new email providers
-1. Install package - `yarn add <provider-package>`
-2. Add credentials in config ([see - config.js](https://github.com/naderskhan/email-service/blob/master/src/config.js))
-3. Create a new implementation file under `/src/services/` ([see - examples](https://github.com/naderskhan/email-service/blob/master/src/services)):
+1. Add credentials in config ([see - config.js](https://github.com/naderskhan/email-service/blob/master/config/development.js))
+2. Create a new implementation file under `/src/services/` ([see - examples](https://github.com/naderskhan/email-service/blob/master/src/services)):
     - File name must match provider's name in config
     - File must export a `send()` function
+
+*Note: [superagent](https://www.npmjs.com/package/superagent) request library is used for implementation instead of specific client libraries from email providers*
 
 ## # Run locally
 1. Export credentials in terminal:
 ```
 // mailgun
-export MAILGUN_FROM=<sender-email>
-export MAILGUN_API_KEY=<api-key>
 export MAILGUN_DOMAIN=<domain>
-
-// mailjet
-export MAILJET_FROM=<sender-email>
-export MAILJET_API_KEY_PUBLIC=<public-api-key>
-export MAILJET_API_KEY_PRIVATE=<private-api-key>
+export MAILGUN_API_KEY=<api-key>
+export MAILGUN_FROM=<sender-email>
 
 // sendgrid
-export SENDGRID_FROM=<sender-email>
+export SENDGRID_DOMAIN=<domain>
 export SENDGRID_API_KEY=<api-key>
-
-// sendinblue
-export SENDINBLUE_FROM=<sender-email>
-export SENDINBLUE_API_KEY=<api-key>
+export SENDGRID_FROM=<sender-email>
 ```
 
 2. Run app:
@@ -47,7 +38,7 @@ $ yarn start // or `yarn start:dev`(nodemon)
 
 3. Send request:
 
-*Replace `to`, `cc` and `bcc` with comma-separated emails*
+*To send multiple emails - replace `to`, `cc` and `bcc` with comma-separated emails as necessary*
 ```
 curl --location --request POST 'http://localhost:3000/email' \
 --header 'Content-Type: application/x-www-form-urlencoded' \
@@ -84,3 +75,4 @@ $ yarn test
 - Unit tests coverage and integration tests
 - A proper logger (like `Winston`) for added advantage - such as formatting, levels, stack trace,..
 - Deployment pipeline (CICD) and hosting
+- Structure utils into a folder of related utility files

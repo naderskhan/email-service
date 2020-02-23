@@ -1,13 +1,13 @@
 module.exports = {
   providers: {
     mailgun: {
-      apiKey: 'dummyKey',
       domain: 'dummyDomain',
+      apiKey: 'dummyKey',
       from: 'dummy@dummy.com',
     },
     sendgrid: {
+      domain: 'dummyDomain',
       apiKey: 'dummyKey',
-      domain: '',
       from: 'dummy@dummy.com',
     },
   },

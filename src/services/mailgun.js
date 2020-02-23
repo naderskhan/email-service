@@ -1,12 +1,18 @@
-import mailgun from 'mailgun-js';
 import { providers } from 'config';
+import { toBase64, post } from '../utils';
 
 export const send = async (data) => {
-  const { apiKey, domain, from } = providers.mailgun;
-  const mg = mailgun({ apiKey, domain });
-  const result = await mg.messages().send({
-    from,
-    ...data,
-  });
+  const { domain, apiKey, from } = providers.mailgun;
+  const result = await post(
+    domain,
+    {
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'Authorization': `Basic ${toBase64(apiKey)}`,
+    },
+    {
+      from,
+      ...data,
+    },
+  );
   return result;
 };

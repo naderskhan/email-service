@@ -1,3 +1,5 @@
+import request from 'superagent';
+
 const removeDuplicates = (fromArray, toRemove) => fromArray.filter((e) => !toRemove.includes(e));
 
 const areEmailsValid = (emails) => {
@@ -42,3 +44,13 @@ export const validateData = (data) => {
 };
 
 export const emailsToObject = (emails, key = 'email') => emails.split(',').map((e) => ({ [key]: e }));
+
+export const toBase64 = (string) => Buffer.from(string).toString('base64');
+
+export const post = async (url, headers, body) => {
+  const result = await request
+    .post(url)
+    .set(headers)
+    .send(body);
+  return result;
+};

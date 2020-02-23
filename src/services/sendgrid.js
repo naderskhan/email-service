@@ -1,23 +1,36 @@
-import sendgrid from '@sendgrid/mail';
 import { providers } from 'config';
+import { post, emailsToObject } from '../utils';
 
 export const send = async (data) => {
-  const { apiKey, from } = providers.sendgrid;
+  const { domain, apiKey, from } = providers.sendgrid;
   const {
     to,
+    subject,
+    text,
     cc,
     bcc,
-    ...rest
   } = data;
-  sendgrid.setApiKey(apiKey);
-
-  // sendgrid expects emails as array
-  const result = await sendgrid.send({
-    from,
-    to: to.split(','),
-    ...(cc && { cc: cc.split(',') }),
-    ...(bcc && { bcc: bcc.split(',') }),
-    ...rest,
-  });
+  const result = await post(
+    domain,
+    {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${apiKey}`,
+    },
+    {
+      personalizations: [{
+        to: emailsToObject(to),
+        ...(cc && emailsToObject(cc)),
+        ...(bcc && emailsToObject(bcc)),
+        subject,
+      }],
+      from: {
+        email: from,
+      },
+      content: [{
+        type: 'text/plain',
+        value: text,
+      }],
+    },
+  );
   return result;
 };

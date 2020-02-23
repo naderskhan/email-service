@@ -16,6 +16,7 @@ module.exports = {
     "import/no-dynamic-require": "off",
     "global-require": "off",
     "no-restricted-syntax": "off",
-    "no-await-in-loop": "off"
+    "no-await-in-loop": "off",
+    "quote-props": "off",
   }
 };

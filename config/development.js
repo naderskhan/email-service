@@ -1,26 +1,13 @@
 module.exports = {
   providers: {
-    mailjet: {
-      apiKey: [
-        process.env.MAILJET_API_KEY_PUBLIC,
-        process.env.MAILJET_API_KEY_PRIVATE,
-      ],
-      domain: '',
-      from: process.env.MAILJET_FROM,
-    },
     mailgun: {
-      apiKey: process.env.MAILGUN_API_KEY,
       domain: process.env.MAILGUN_DOMAIN,
+      apiKey: process.env.MAILGUN_API_KEY,
       from: process.env.MAILGUN_FROM,
     },
-    sendinblue: {
-      apiKey: process.env.SENDINBLUE_API_KEY,
-      domain: '',
-      from: process.env.SENDINBLUE_FROM,
-    },
     sendgrid: {
+      domain: process.env.SENDGRID_DOMAIN,
       apiKey: process.env.SENDGRID_API_KEY,
-      domain: '',
       from: process.env.SENDGRID_FROM,
     },
   },
