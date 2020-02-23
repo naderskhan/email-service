@@ -10,6 +10,7 @@ export const send = async (data) => {
     cc,
     bcc,
   } = data;
+
   const result = await post(
     domain,
     {
@@ -19,8 +20,8 @@ export const send = async (data) => {
     {
       personalizations: [{
         to: emailsToObject(to),
-        ...(cc && emailsToObject(cc)),
-        ...(bcc && emailsToObject(bcc)),
+        ...(cc && { cc: emailsToObject(cc) }),
+        ...(bcc && { bcc: emailsToObject(bcc) }),
         subject,
       }],
       from: {
